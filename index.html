@@ -6,44 +6,71 @@
 
 <title>Crawl Clan</title>
 
+
 <!-- KoPubWorld -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2107@1.1/KoPubWorldDotum.woff">
+
 
 <!-- Allura -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
 
+
 <style>
 
 :root {
+
     --navy:#112E81;
     --purple:#4647AE;
     --blue:#4382DF;
     --sky:#AACCD6;
     --white:#ffffff;
+
 }
+
 
 
 * {
+
     margin:0;
     padding:0;
     box-sizing:border-box;
+
 }
+
+
+
+html {
+
+    scroll-behavior:smooth;
+
+}
+
 
 
 body {
-    background:white;
+
+    background:#ffffff;
+
     color:var(--navy);
-    font-family:"KoPubWorldDotum", sans-serif;
+
+    font-family:"KoPubWorld", sans-serif;
+
     overflow-x:hidden;
+
 }
 
 
-/* 영어 폰트 */
+
+/* 영문 */
+
 .eng {
+
     font-family:"Allura", cursive;
+
 }
+
 
 
 /* =====================
@@ -53,27 +80,31 @@ body {
 
 .intro {
 
-    width:100%;
     height:100vh;
 
     display:flex;
+
     justify-content:center;
+
     align-items:center;
 
     position:relative;
+
     overflow:hidden;
 
     background:
-    linear-gradient(
-    135deg,
-    #ffffff,
-    #AACCD6
+
+    radial-gradient(
+    circle at center,
+    #ffffff 20%,
+    #AACCD6 100%
     );
 
 }
 
 
-/* 흐릿한 배경 글씨 */
+
+/* 흐릿한 배경 */
 
 .intro::before {
 
@@ -83,53 +114,75 @@ body {
 
     font-family:"Allura", cursive;
 
-    font-size:110px;
+    font-size:120px;
 
-    color:#112E81;
+    color:var(--navy);
 
-    opacity:0.06;
+    opacity:0.05;
+
+    transform:rotate(-12deg);
 
     white-space:nowrap;
-
-    transform:rotate(-10deg);
 
 }
 
 
-/* 나비 장식 */
+
+/* 나비 실루엣 */
 
 .butterfly {
 
     position:absolute;
 
-    font-size:50px;
+    width:90px;
 
-    color:#4382DF;
+    height:55px;
 
-    opacity:0.35;
+    border-radius:90% 10% 90% 10%;
+
+    background:
+
+    linear-gradient(
+    135deg,
+    transparent,
+    rgba(67,130,223,0.25)
+    );
+
+    filter:blur(1px);
 
 }
 
 
-.b1 {
-    top:15%;
+
+.butterfly.left {
+
     left:15%;
+
+    top:25%;
+
+    transform:rotate(-25deg);
+
 }
 
 
-.b2 {
-    bottom:20%;
-    right:18%;
-    transform:rotate(25deg);
+
+.butterfly.right {
+
+    right:15%;
+
+    bottom:25%;
+
+    transform:rotate(155deg);
+
 }
 
 
 
-.intro-box {
+/* 제목 영역 */
+
+.intro-content {
 
     text-align:center;
-
-    position:relative;
 
     z-index:2;
 
@@ -137,29 +190,15 @@ body {
 
 
 
-.since {
-
-    font-size:14px;
-
-    letter-spacing:4px;
-
-    margin-top:20px;
-
-    color:#4647AE;
-
-}
-
-
-
 .clan-title {
 
-    font-size:70px;
+    font-size:72px;
 
     font-weight:bold;
 
-    color:#112E81;
+    letter-spacing:5px;
 
-    letter-spacing:3px;
+    color:var(--navy);
 
 }
 
@@ -167,11 +206,11 @@ body {
 
 .clan-eng {
 
-    font-size:65px;
+    margin-top:-10px;
 
-    color:#4382DF;
+    font-size:75px;
 
-    margin-top:-15px;
+    color:var(--blue);
 
 }
 
@@ -183,12 +222,25 @@ body {
 
     font-size:18px;
 
-    letter-spacing:8px;
+    letter-spacing:10px;
 
-    color:#4647AE;
+    color:var(--purple);
 
 }
 
+
+
+.date {
+
+    margin-top:15px;
+
+    font-size:14px;
+
+    letter-spacing:5px;
+
+    color:var(--purple);
+
+}
 
 
 
@@ -203,7 +255,7 @@ body {
 
     inset:0;
 
-    background:white;
+    z-index:100;
 
     display:flex;
 
@@ -211,57 +263,198 @@ body {
 
     align-items:center;
 
-    z-index:99;
+    background:white;
 
-    animation:loadingFade 3s forwards;
+    animation:
+
+    loadingDisappear 3.5s forwards;
 
 }
 
 
 
-.loading p {
+.loading-box {
+
+    text-align:center;
+
+}
+
+
+
+.loading-text {
 
     font-size:18px;
 
-    color:#112E81;
+    letter-spacing:4px;
 
-    letter-spacing:3px;
+    color:var(--navy);
 
 }
 
 
 
-@keyframes loadingFade {
+.loading-line {
+
+    width:160px;
+
+    height:1px;
+
+    background:var(--blue);
+
+    margin:25px auto 0;
+
+    animation:
+
+    lineMove 2s infinite;
+
+}
+
+
+
+@keyframes loadingDisappear {
+
 
     0% {
+
         opacity:1;
+
     }
 
 
-    70% {
+    75% {
+
         opacity:1;
+
     }
 
 
     100% {
+
         opacity:0;
-        pointer-events:none;
+
+        visibility:hidden;
+
     }
 
 }
 
 
 
+@keyframes lineMove {
+
+
+    0% {
+
+        transform:scaleX(0.2);
+
+    }
+
+
+    50% {
+
+        transform:scaleX(1);
+
+    }
+
+
+    100% {
+
+        transform:scaleX(0.2);
+
+    }
+
+}
+
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- 로딩 화면 -->
+
+<div class="loading">
+
+    <div class="loading-box">
+
+        <div class="loading-text">
+            기어와 클랜에 오신 걸 환영합니다!
+        </div>
+
+        <div class="loading-line"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- 첫 화면 -->
+
+<section class="intro">
+
+
+<div class="butterfly left"></div>
+
+<div class="butterfly right"></div>
+
+
+
+<div class="intro-content">
+
+
+<div class="clan-title">
+
+기어와 클랜
+
+</div>
+
+
+<div class="clan-eng eng">
+
+Crawl Clan
+
+</div>
+
+
+<div class="synth">
+
+신스
+
+</div>
+
+
+<div class="date">
+
+2020. 8. 9
+
+</div>
+
+
+</div>
+
+
+</section>
+
+<style>
+
+
 /* =====================
-   MAIN
+   MAIN AREA
 ===================== */
 
 
-main {
+.main {
 
-    padding:100px 8%;
+    min-height:100vh;
 
-    background-image:
+    padding:120px 8%;
+
+    background:
 
     linear-gradient(
     rgba(67,130,223,0.08) 1px,
@@ -274,25 +467,31 @@ main {
     transparent 1px
     );
 
-    background-size:40px 40px;
+    background-size:45px 45px;
 
 }
 
+
+
 /* =====================
-   SCROLL REVEAL
+   SCROLL EFFECT
 ===================== */
+
 
 .reveal {
 
     opacity:0;
 
-    transform:translateY(60px);
+    transform:translateY(70px);
 
     transition:
+
     opacity 1s ease,
+
     transform 1s ease;
 
 }
+
 
 
 .reveal.active {
@@ -306,25 +505,30 @@ main {
 
 
 /* =====================
-   CLAN BOX
+   INFO BOX
 ===================== */
 
 
-.clan-box {
-
-    margin:80px auto;
+.info-box {
 
     max-width:900px;
 
-    padding:45px;
+    margin:80px auto;
 
-    border:1px solid rgba(17,46,129,0.35);
+    padding:50px;
 
     background:
-    rgba(255,255,255,0.8);
+
+    rgba(255,255,255,0.9);
+
+
+    border:1px solid rgba(17,46,129,0.25);
+
 
     box-shadow:
-    0 15px 40px rgba(17,46,129,0.15);
+
+    0 20px 45px rgba(17,46,129,0.12);
+
 
     position:relative;
 
@@ -332,7 +536,9 @@ main {
 
 
 
-.clan-box::before {
+/* 왼쪽 라인 */
+
+.info-box::before {
 
     content:"";
 
@@ -347,22 +553,26 @@ main {
     height:100%;
 
     background:
+
     linear-gradient(
+
     var(--blue),
+
     var(--purple)
+
     );
 
 }
 
 
 
-.box-title {
+.info-title {
 
-    font-size:30px;
+    font-size:32px;
 
     color:var(--navy);
 
-    margin-bottom:25px;
+    margin-bottom:30px;
 
     font-weight:bold;
 
@@ -370,131 +580,21 @@ main {
 
 
 
-.box-title span {
+.info-title .eng {
 
-    font-family:"Allura";
+    font-size:40px;
 
     color:var(--blue);
-
-    font-size:45px;
 
 }
 
 
 
-.box-text {
-
-    line-height:2;
+.info-text {
 
     font-size:16px;
 
-    color:#222;
-
-}
-
-
-
-.highlight {
-
-    color:var(--blue);
-
-    font-weight:bold;
-
-}
-
-
-
-/* 장식 */
-
-.deco {
-
-    position:absolute;
-
-    right:30px;
-
-    top:25px;
-
-    font-size:35px;
-
-    opacity:0.25;
-
-}
-
-/* =====================
-   LINK AREA
-===================== */
-
-
-.divider {
-
-    width:80%;
-
-    height:1px;
-
-    margin:100px auto;
-
-    background:
-    linear-gradient(
-    90deg,
-    transparent,
-    var(--blue),
-    transparent
-    );
-
-}
-
-
-
-.link-area {
-
-    max-width:900px;
-
-    margin:0 auto;
-
-}
-
-
-
-.link-title {
-
-    font-size:30px;
-
-    color:var(--navy);
-
-    margin-bottom:35px;
-
-    font-weight:bold;
-
-}
-
-
-
-.link-item {
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:25px 30px;
-
-    margin-bottom:20px;
-
-    border-left:4px solid var(--blue);
-
-    background:white;
-
-    box-shadow:
-    0 10px 30px rgba(17,46,129,0.12);
-
-}
-
-
-
-.link-name {
-
-    font-size:18px;
+    line-height:2.1;
 
     color:#222;
 
@@ -502,316 +602,107 @@ main {
 
 
 
-.link-btn {
-
-
-text-decoration:none;
-
-padding:10px 25px;
-
-border:1px solid var(--blue);
-
-color:var(--blue);
-
-transition:0.3s;
-
-}
-
-
-
-.link-btn:hover {
-
-background:var(--blue);
-
-color:white;
-
-}
-
-
-
-.footer {
-
-    text-align:center;
-
-    padding:80px 0 40px;
-
-    font-size:13px;
-
-    color:#4647AE;
-
-    letter-spacing:2px;
-
-}
-
-
-.footer span {
-
-    font-family:"Allura";
-
-    font-size:25px;
+.info-text strong {
 
     color:var(--blue);
 
 }
+
+
 
 </style>
 
-</head>
 
 
-<body>
+<main class="main">
 
 
-<!-- 로딩 -->
 
-<div class="loading">
+<section class="info-box reveal">
 
-<p>
-기어와 클랜에 오신 걸 환영합니다!
-</p>
 
-</div>
+<div class="info-title">
 
-
-
-<!-- 인트로 -->
-
-<section class="intro">
-
-
-<div class="butterfly b1">
-🦋
-</div>
-
-
-<div class="butterfly b2">
-🦋
-</div>
-
-
-
-<div class="intro-box">
-
-
-<div class="clan-title">
-기어와 Clan
-</div>
-
-
-<div class="clan-eng eng">
-Crawl Clan
-</div>
-
-
-<div class="synth">
-신스
-</div>
-
-
-<div class="since">
-2020. 8. 9
-</div>
-
-
-</div>
-
-
-</section>
-
-
-
-<main>
-
-<div class="divider"></div>
-
-
-
-<section class="link-area reveal">
-
-
-<div class="link-title">
-
-클모글
-
-</div>
-
-
-
-<div class="link-item">
-
-
-<div class="link-name">
-
-모든 미네랄 리퀘 & 이벤트 모음집
-
-</div>
-
-
-<a class="link-btn"
-href="https://naver.me/F7FR0I2u"
-target="_blank">
-
-이동
-
-</a>
-
-
-</div>
-
-
-
-
-
-<div class="link-item">
-
-
-<div class="link-name">
-
-모든 미네랄 리퀘 & 이벤트 모음집
-
-</div>
-
-
-<a class="link-btn"
-href="https://naver.me/xSBslnXV"
-target="_blank">
-
-이동
-
-</a>
-
-
-</div>
-
-
-
-
-
-<div class="link-item">
-
-
-<div class="link-name">
-
-신고처
-
-</div>
-
-
-<a class="link-btn"
-href="https://open.kakao.com/o/s7rteFRg"
-target="_blank">
-
-이동
-
-</a>
-
-
-</div>
-
-
-</section>
-
-
-<footer class="footer">
-
-
-제작
-
-
-<br>
-
-
-<span>
-LR. 리아
-</span>
-
-
-</footer>
-
-<section>
-
-
-<div class="clan-box reveal">
-
-<div class="deco">
-🦋
-</div>
-
-
-<div class="box-title">
 기어와 클랜 소개
+
 </div>
 
 
-<div class="box-text">
+<div class="info-text">
+
 
 <strong>Free clan</strong><br>
 
-Lv. 15<br>
+Lv. 15<br><br>
 
-<strong>Master</strong> 유리류<br>
+
+<strong>Master</strong><br>
+
+유리류<br><br>
+
 
 <strong>Sub Master</strong><br>
 
+<br>
+
 하며 버프 주성지
 
-</div>
-
 
 </div>
 
 
-
-<div class="clan-box reveal">
-
-
-<div class="deco">
-✦
-</div>
+</section>
 
 
-<div class="box-title">
+
+
+
+<section class="info-box reveal">
+
+
+<div class="info-title">
+
 일반 전형
+
 </div>
 
 
-<div class="box-text">
+<div class="info-text">
+
 
 주간 기부 5천<br>
 
 한 달 이상 미접 X<br><br>
 
 
-- only 본계정 가입<br>
+<strong>- only 본계정 가입</strong><br>
 
 (캐스팅 외 부계 가입 불가)<br><br>
 
 
-- LV. 95 이상
-
-</div>
+<strong>- LV. 95 이상</strong>
 
 
 </div>
 
 
+</section>
 
 
 
-<div class="clan-box reveal">
 
 
-<div class="deco">
-🦋
-</div>
+<section class="info-box reveal">
 
 
-<div class="box-title">
+<div class="info-title">
+
 디비전 전형
+
 </div>
 
 
-<div class="box-text">
+<div class="info-text">
 
 
 주간 기부 5천<br>
@@ -819,12 +710,12 @@ Lv. 15<br>
 한 달 이상 미접 X<br><br>
 
 
-- only 본계정 가입<br>
+<strong>- only 본계정 가입</strong><br>
 
 (부계 가입 90 이상)<br><br>
 
 
-- 아래 3개의 조건 중<br>
+아래 3개의 조건 중<br>
 
 최소 1개 충족<br><br>
 
@@ -833,9 +724,10 @@ Lv. 15<br>
 
 34 다잡 : 138^<br>
 
-2442 언터<br>
+2442 언터<br><br>
 
-(인증샷 or 영상 택1)<br><br>
+
+인증샷 or 영상 택1<br><br>
 
 
 * 하드 외 노말 랭 가능
@@ -844,26 +736,23 @@ Lv. 15<br>
 </div>
 
 
-</div>
+</section>
 
 
 
 
 
-<div class="clan-box reveal">
+<section class="info-box reveal">
 
 
-<div class="deco">
-✧
-</div>
+<div class="info-title">
 
-
-<div class="box-title">
 리부트 전형
+
 </div>
 
 
-<div class="box-text">
+<div class="info-text">
 
 
 주간 기부 5천<br>
@@ -876,33 +765,31 @@ Lv. 15<br>
 최소 1개 충족<br><br>
 
 
-- 기본 무기 20강 1개<br>
+기본 무기 20강 1개<br>
 
-- 기본 무기 15강 3개^
-
-</div>
+기본 무기 15강 3개^
 
 
 </div>
 
 
+</section>
 
 
 
-<div class="clan-box reveal">
 
 
-<div class="deco">
-🦋
-</div>
+<section class="info-box reveal">
 
 
-<div class="box-title">
+<div class="info-title">
+
 아트 전형
+
 </div>
 
 
-<div class="box-text">
+<div class="info-text">
 
 
 자유기부<br>
@@ -914,7 +801,91 @@ Lv. 15<br>
 
 2회 이상 개장
 
+
 </div>
+
+
+</section>
+
+<div class="divider"></div>
+
+
+
+<section class="link-area reveal">
+
+
+<div class="info-title">
+
+클모글
+
+</div>
+
+
+
+<div class="link-box">
+
+
+<div class="link-name">
+
+모든 미네랄 리퀘&이벤트 모음집
+
+</div>
+
+
+<a href="https://naver.me/F7FR0I2u"
+target="_blank">
+
+이동
+
+</a>
+
+
+</div>
+
+
+
+
+
+<div class="link-box">
+
+
+<div class="link-name">
+
+모든 미네랄 리퀘&이벤트 모음집
+
+</div>
+
+
+<a href="https://naver.me/xSBslnXV"
+target="_blank">
+
+이동
+
+</a>
+
+
+</div>
+
+
+
+
+
+<div class="link-box">
+
+
+<div class="link-name">
+
+신고처
+
+</div>
+
+
+<a href="https://open.kakao.com/o/s7rteFRg"
+target="_blank">
+
+이동
+
+</a>
 
 
 </div>
@@ -923,34 +894,260 @@ Lv. 15<br>
 </section>
 
 
-<!-- 2편에서 내용 추가 -->
+
+<footer>
 
 
-</main>
+제작
+
+<br>
+
+
+<span>
+LR. 리아
+</span>
+
+
+</footer>
+
+
+
+<style>
+
+
+/* =====================
+   LINK
+===================== */
+
+
+.divider {
+
+    width:80%;
+
+    height:1px;
+
+    margin:100px auto;
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    var(--blue),
+
+    transparent
+
+    );
+
+}
+
+
+
+.link-area {
+
+    max-width:900px;
+
+    margin:auto;
+
+}
+
+
+
+.link-box {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px 30px;
+
+    margin:25px 0;
+
+    background:white;
+
+    border-left:
+
+    5px solid var(--blue);
+
+    box-shadow:
+
+    0 15px 35px rgba(17,46,129,0.12);
+
+}
+
+
+
+.link-name {
+
+    color:#222;
+
+    font-size:16px;
+
+}
+
+
+
+.link-box a {
+
+    text-decoration:none;
+
+    color:var(--blue);
+
+    border:1px solid var(--blue);
+
+    padding:10px 28px;
+
+    transition:.3s;
+
+}
+
+
+
+.link-box a:hover {
+
+    background:var(--blue);
+
+    color:white;
+
+}
+
+
+
+/* =====================
+   FOOTER
+===================== */
+
+
+footer {
+
+    text-align:center;
+
+    padding:100px 0 50px;
+
+    color:var(--purple);
+
+    font-size:13px;
+
+    letter-spacing:3px;
+
+}
+
+
+
+footer span {
+
+    font-family:"Allura", cursive;
+
+    font-size:32px;
+
+    color:var(--blue);
+
+}
+
+
+
+/* =====================
+   MOBILE
+===================== */
+
+
+@media(max-width:700px){
+
+
+.clan-title {
+
+    font-size:45px;
+
+}
+
+
+.clan-eng {
+
+    font-size:50px;
+
+}
+
+
+.intro::before {
+
+    font-size:60px;
+
+}
+
+
+.info-box {
+
+    margin:50px 10px;
+
+    padding:35px 25px;
+
+}
+
+
+.link-box {
+
+    flex-direction:column;
+
+    align-items:flex-start;
+
+    gap:20px;
+
+}
+
+
+.info-title {
+
+    font-size:26px;
+
+}
+
+
+}
+
+
+
+/* =====================
+   SCRIPT
+===================== */
+
+
+</style>
+
+
 
 <script>
 
 
-const reveals = document.querySelectorAll(".reveal");
+const reveals =
+document.querySelectorAll(".reveal");
 
 
-function reveal(){
 
-reveals.forEach((el)=>{
+function scrollReveal(){
+
+
+reveals.forEach((element)=>{
 
 
 const windowHeight =
 window.innerHeight;
 
 
-const top =
-el.getBoundingClientRect().top;
+const elementTop =
+element.getBoundingClientRect().top;
 
 
 
-if(top < windowHeight - 100){
+if(elementTop < windowHeight - 100){
 
-el.classList.add("active");
+
+element.classList.add("active");
+
 
 }
 
@@ -964,64 +1161,22 @@ el.classList.add("active");
 
 window.addEventListener(
 "scroll",
-reveal
+scrollReveal
 );
 
 
-reveal();
+
+scrollReveal();
+
 
 
 </script>
 
+
+
+</main>
+
+
 </body>
-
-@media(max-width:700px){
-
-
-.clan-title {
-
-font-size:45px;
-
-}
-
-
-.clan-eng {
-
-font-size:45px;
-
-}
-
-
-.intro::before {
-
-font-size:60px;
-
-}
-
-
-
-.clan-box {
-
-margin:50px 15px;
-
-padding:30px;
-
-}
-
-
-
-.link-item {
-
-flex-direction:column;
-
-gap:20px;
-
-align-items:flex-start;
-
-}
-
-
-
-}
 
 </html>
